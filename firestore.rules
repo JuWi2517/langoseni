@@ -1,0 +1,19 @@
+rules_version = '2';
+
+// Rules for the Langoš ordering app.
+//
+// WARNING: these rules allow ANYONE to read and write the menu and orders.
+// That's fine for local testing or a trusted network, but before deploying
+// publicly you must add authentication and tighten these rules.
+//
+// To apply: Firebase Console -> Firestore Database -> Rules -> paste -> Publish.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /menu/{doc} {
+      allow read, write: if true;
+    }
+    match /orders/{doc} {
+      allow read, write: if true;
+    }
+  }
+}
